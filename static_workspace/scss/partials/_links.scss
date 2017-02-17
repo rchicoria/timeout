@@ -1,0 +1,24 @@
+// main: ../main.scss
+
+a {
+  @include transition-duration(.2s);
+
+  &:link {
+    color: #9B9BA3;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: #9B9BA3;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:active {
+    text-decoration: none;
+  }
+}

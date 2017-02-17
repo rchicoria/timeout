@@ -1,0 +1,69 @@
+// main: ../main.scss
+
+$light: 300;
+$bold: 700;
+
+font-face {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: $bold;
+  src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url("../fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf") format('truetype');
+}
+
+// font-face {
+//   font-family: 'Merriweather', serif;
+//   font-style: normal;
+//   font-weight: $light;
+//   src: local('Merriweather Light'), local('Merriweather-Light'), url("../fonts/Merriweather/Merriweather-Light.ttf") format('truetype');
+// }
+
+$base-font-family: 'Source Sans Pro', sans-serif;
+$base-font-style: normal;
+$base-font-weight: $bold;
+$base-font-size: em(20px);
+$base-font-color: $green;
+
+// h1 {
+//   margin-bottom: 2px;
+//   text-transform: uppercase;
+//   font-size: em(24px);
+//   font-weight: $bold;
+//   color: #fff;
+// }
+//
+// h2 {
+//   margin-bottom: 30px;
+//   font-size: em(20px);
+//   font-weight: $bold;
+//   color: #9B9BA3;
+// }
+//
+// p {
+//   font-weight: $light;
+//   line-height: em(30px);
+// }
+//
+a {
+  @include transition-duration(.1s);
+  color: $blue;
+  text-decoration: none;
+
+  // &:link {
+  //   color: #9B9BA3;
+  //   text-decoration: none;
+  // }
+  //
+  // &:visited {
+  //   color: #9B9BA3;
+  //   text-decoration: none;
+  // }
+  //
+  &:hover {
+    color: $green;
+    // text-decoration: none;
+  }
+  //
+  // &:active {
+  //   text-decoration: none;
+  // }
+}

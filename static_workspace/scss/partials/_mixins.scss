@@ -1,0 +1,22 @@
+// main: ../main.scss
+
+$breakpoints: (
+  'screen-xs': (max-width: 768px),
+  'screen-sm': (min-width: 769px),
+  'screen-md': (min-width: 992px),
+  'screen-lg': (min-width: 1200px),
+  'screen-xl': (min-width: 1920px)
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+  @else {
+    @error 'No value found for `#{$breakpoint}`. '
+    + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
