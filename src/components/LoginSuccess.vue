@@ -18,10 +18,10 @@
         </div>
 
         <ul class="time">
-          <li><a href="#0" class="btn">2 min</a></li>
-          <li><a href="#0" class="btn">5 min</a></li>
-          <li><a href="#0" class="btn">10 min</a></li>
-          <li><a href="#0" class="btn">15 min</a></li>
+          <li><a href="#/timeline" class="btn">2 min</a></li>
+          <li><a href="#/timeline" class="btn">5 min</a></li>
+          <li><a href="#/timeline" class="btn">10 min</a></li>
+          <li><a href="#/timeline" class="btn">15 min</a></li>
         </ul>
       </div>
     </div>
