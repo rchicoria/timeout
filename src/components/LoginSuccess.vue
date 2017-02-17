@@ -12,6 +12,11 @@
           <img src="static_workspace/img/avatar.jpg" alt="Avatar Image" />
         </div>
 
+        <div class="twitter-handle">
+          <span class="">John Doe</span>
+          <span class="">@johndoe</span>
+        </div>
+
         <ul class="time">
           <li><a href="#0" class="btn">2 min</a></li>
           <li><a href="#0" class="btn">5 min</a></li>

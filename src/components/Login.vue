@@ -7,7 +7,8 @@
     <div class="login-col login-col__form">
       <div class="login-col__form-content">
         <img src="static_workspace/img/timeout-logo.svg" alt="Timeout" />
-        <a href="login-success.html" class="btn">Log in with Twitter</a>
+        <p>A time saver for your Twitter feed</p>
+        <a href="#/loginsuccess/" class="btn">Log in with Twitter</a>
       </div>
     </div>
   </div>
@@ -18,4 +19,3 @@ export default {
   name: 'login'
 }
 </script>
-

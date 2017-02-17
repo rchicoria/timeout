@@ -7,6 +7,7 @@
   border-color: $blue;
   border-radius: 42px;
   @include padding(10px 20px 10px 20px);
+  font-weight: $bold;
 
   &:hover {
     background-color: $blue;
