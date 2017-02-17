@@ -7,7 +7,8 @@
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js",
     "serve": "http-server -o -c 1 -a localhost",
-    "dev": "npm-run-all --parallel watchify serve",
+    "server": "hot-reload server.js",
+    "dev": "npm-run-all --parallel watchify server",
     "lint": "eslint --ext .js,.vue src test/unit",
     "test": "karma start karma.conf.js",
     "build": "cross-env NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o dist/build.css ] -e src/main.js | uglifyjs -c warnings=false -m > dist/build.js"
@@ -22,8 +23,16 @@
     "vue": "vue/dist/vue.common.js"
   },
   "dependencies": {
+    "codebird": "^2.6.0",
+    "express": "^4.14.1",
+    "morgan": "^1.8.1",
+    "node-twitter-api": "^1.8.0",
+    "path": "^0.12.7",
+    "secret": "^1.0.2",
     "vue": "^2.0.1",
-    "vue-router": "^2.2.1"
+    "vue-router": "^2.2.1",
+    "xhr2": "^0.1.4",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

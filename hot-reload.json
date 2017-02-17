@@ -1,0 +1,10 @@
+{
+    "watch": [
+        "static_workspace/",
+        "dist/",
+        "index.html",
+        "routes.js",
+        "package.json"
+    ],
+    "logging-enabled": true
+}
