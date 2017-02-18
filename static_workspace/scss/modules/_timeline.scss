@@ -160,6 +160,10 @@
 
         &:hover {
           box-shadow: 5px 12px 20px rgba(36,37,38,0.13);
+
+          .news-container__col-date {
+            opacity: 1;
+          }
         }
 
         &-txt {
@@ -225,6 +229,28 @@
             p {
               margin-top: 10px;
               line-height: 150%;
+            }
+          }
+
+          &-date {
+            @include respond-to('screen-sm') {
+              position: absolute;
+              right: calc(15% - 130px);
+              width: 75px;
+              padding-top: 3px;
+              font-size: em(10px);
+              opacity: 0;
+              @include transition-duration(.1s);
+
+              span {
+                display: block;
+                @include padding(2px null 2px null);
+                color: lighten($grey, 70%);
+              }
+            }
+
+            @include respond-to('screen-md') {
+              right: calc(25% - 130px);
             }
           }
 

@@ -24,6 +24,11 @@
               <p>A political action group making anti-Trump robocalls is closely tied to a pro-Trump PAC</p>
             </div>
           </div>
+
+          <div class="news-container__col-date">
+            <span>18/02/2017</span>
+            <span>00:00</span>
+          </div>
         </div>
 
         <div class="news-container__entrie news-container__entrie-txt">
