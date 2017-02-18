@@ -172,6 +172,9 @@
 
           &-txt {
             @include padding(30px 30px 30px 30px);
+            word-wrap: break-word;
+            overflow: overlay;
+
             .twitter-handle {
               font-size: 14px;
               font-weight: $bold;
