@@ -2,7 +2,8 @@
   <div class="timeline-container timeline-container__detail">
     <div class="timeline-container__sidebar">
       <ul>
-        <li><a href="javascript:history.back()">Back</a></li>
+        <li><a href="/loginsuccess">2 min</a></li>
+        <li><a href="/timeline">Back</a></li>
         <li><a href="#" v-on:click="logout">Logout</a></li>
       </ul>
     </div>
@@ -10,7 +11,7 @@
     <div class="timeline-container__content">
       <div class="news-container">
         <div class="news-container__entrie news-container__entrie-detail news-container__entrie-detail-tweet">
-          
+
         </div>
 
         <div class="news-container__detail-options">
