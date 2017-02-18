@@ -7,7 +7,7 @@
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js",
     "serve": "http-server -o -c 1 -a localhost",
-    "server": "hot-reload server.js",
+    "server": "node server.js",
     "dev": "npm-run-all --parallel watchify server",
     "lint": "eslint --ext .js,.vue src test/unit",
     "test": "karma start karma.conf.js",
