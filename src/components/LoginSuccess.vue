@@ -9,7 +9,12 @@
         <img src="static_workspace/img/timeout-logo.svg" alt="Timeout" />
 
         <div class="user-avatar">
-          <img src="static_workspace/img/avatar.jpg" alt="Avatar Image" />
+          <img v-bind:src="image" alt="Avatar Image" />
+        </div>
+
+        <div class="twitter-handle">
+          <span class="">{{ name }}</span>
+          <span class="">@{{ screen_name }}</span>
         </div>
 
         <ul class="time">
@@ -23,7 +28,20 @@
 </template>
 
 <script>
+import { app, router } from '../main.js'
 export default {
-  name: 'loginsuccess'
+  name: 'loginsuccess',
+  data: function () {
+    return {
+      name: null,
+      screen_name: null,
+      image: null
+    }
+  },
+  mounted: function() {
+    this.name = this.$root.$data.user.name;
+    this.screen_name = this.$root.$data.user.screen_name;
+    this.image = this.$root.$data.user.profile_image_url;
+  }
 }
 </script>

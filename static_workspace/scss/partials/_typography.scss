@@ -1,7 +1,31 @@
 // main: ../main.scss
 
 $light: 300;
+$regular: 400;
+$semibold: 600;
 $bold: 700;
+$black: 900;
+
+font-face {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: $light;
+  src: local('Source Sans Pro Light'), local('SourceSansPro-Light'), url("../fonts/Source_Sans_Pro/SourceSansPro-Light.ttf") format('truetype');
+}
+
+font-face {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: $regular;
+  src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url("../fonts/Source_Sans_Pro/SourceSansPro-Regular.ttf") format('truetype');
+}
+
+font-face {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: $semibold;
+  src: local('Source Sans Pro Semibold'), local('SourceSansPro-Semibold'), url("../fonts/Source_Sans_Pro/SourceSansPro-Semibold.ttf") format('truetype');
+}
 
 font-face {
   font-family: 'Source Sans Pro', sans-serif;
@@ -10,60 +34,31 @@ font-face {
   src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url("../fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf") format('truetype');
 }
 
-// font-face {
-//   font-family: 'Merriweather', serif;
-//   font-style: normal;
-//   font-weight: $light;
-//   src: local('Merriweather Light'), local('Merriweather-Light'), url("../fonts/Merriweather/Merriweather-Light.ttf") format('truetype');
-// }
+font-face {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: $bold;
+  src: local('Source Sans Pro Black'), local('SourceSansPro-Black'), url("../fonts/Source_Sans_Pro/SourceSansPro-Black.ttf") format('truetype');
+}
 
 $base-font-family: 'Source Sans Pro', sans-serif;
 $base-font-style: normal;
-$base-font-weight: $bold;
+$base-font-weight: $light;
 $base-font-size: em(20px);
-$base-font-color: $green;
+$base-font-color: $grey;
 
-// h1 {
-//   margin-bottom: 2px;
-//   text-transform: uppercase;
-//   font-size: em(24px);
-//   font-weight: $bold;
-//   color: #fff;
-// }
-//
-// h2 {
-//   margin-bottom: 30px;
-//   font-size: em(20px);
-//   font-weight: $bold;
-//   color: #9B9BA3;
-// }
-//
-// p {
-//   font-weight: $light;
-//   line-height: em(30px);
-// }
-//
+p {
+  font-size: em(14px);
+  font-weight: $black;
+  line-height: em(20px);
+}
+
 a {
   @include transition-duration(.1s);
   color: $blue;
   text-decoration: none;
 
-  // &:link {
-  //   color: #9B9BA3;
-  //   text-decoration: none;
-  // }
-  //
-  // &:visited {
-  //   color: #9B9BA3;
-  //   text-decoration: none;
-  // }
-  //
   &:hover {
     color: $green;
-    // text-decoration: none;
   }
-  //
-  // &:active {
-  //   text-decoration: none;
-  // }
 }

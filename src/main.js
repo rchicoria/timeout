@@ -16,15 +16,28 @@ window.cb.setConsumerKey("CydX9EBF2uwLcxjFHA2BEQ0CD", "Z3NsDWLMkbnMHfEt85bkbthcU
 
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     { path: '/', component: Login },
-    { path: '/loginsuccess', component: LoginSuccess },
+    { path: '/loginsuccess', name: 'loginsuccess', component: LoginSuccess },
     { path: '/timeline', component: Timeline },
   ]
 })
 
-new Vue({ // eslint-disable-line no-new
+var app = new Vue({ // eslint-disable-line no-new
   router,
   el: '#app',
-  render: (h) => h(App)
+  render: (h) => h(App),
+  method: {
+    
+  },
+  data: {
+    user: {}
+  }
 })
+
+app.$on('set-user', (user) => {
+  app.user = user
+});
+
+export { app, router }

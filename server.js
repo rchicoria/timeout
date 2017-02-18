@@ -8,7 +8,7 @@ var Twitter = require("node-twitter-api");
 var twitter = new Twitter({
     consumerKey: 'CydX9EBF2uwLcxjFHA2BEQ0CD',
     consumerSecret: 'Z3NsDWLMkbnMHfEt85bkbthcUGyWG7dx9a3rQvFafsyKkip2Ev',
-    callback: 'http://localhost:3000/#/'
+    callback: 'http://localhost:3000/'
 });
 
 var _requestSecret;
@@ -40,23 +40,31 @@ app.get("/access-token", function(req, res) {
 
     twitter.getAccessToken(requestToken, _requestSecret, verifier, function(err, accessToken, accessSecret) {
         if (err) {
-            console.log(err);
             res.status(500).send(err);
         } else {
-            console.log("OK");
             twitter.verifyCredentials(accessToken, accessSecret, function(err, user) {
                 if (err){
                     console.log(err);
                     res.status(500).send(err);
-                }
-                else {
-                    console.log("CENAS");
+                } else {
                     res.send(user);
-
                 }
             });
         }
             
+    });
+});
+
+app.get("/tweets", function(req, res){
+    var accessToken = req.query.access_token,
+        accessSecret = req.query.access_secret;
+
+    twitter.search({'q':'trump','count': 10}, accessToken, accessSecret, (error, data) => {
+        var content = {
+            user: user,
+            tweets: data
+        }
+        res.send(content);
     });
 });
 
