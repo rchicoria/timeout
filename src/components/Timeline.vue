@@ -9,7 +9,7 @@
 
     <div class="timeline-container__content">
       <div class="news-container">
-        <story v-for="story in stories" v-bind:story="story"></story>
+        <!-- <story v-for="story in stories" v-bind:story="story"></story> -->
 
         <div class="news-container__entrie">
           <div class="news-container__col">
@@ -25,9 +25,12 @@
             </div>
           </div>
 
-          <div class="news-container__col-date">
-            <span>18/02/2017</span>
-            <span>00:00</span>
+          <div class="news-container__col-options">
+            <ul>
+              <li>18/02/2017</li>
+              <li>00:00</li>
+              <li><img src="static_workspace/img/discard.svg" alt="Discard Entrie" /></li>
+            </ul>
           </div>
         </div>
 
