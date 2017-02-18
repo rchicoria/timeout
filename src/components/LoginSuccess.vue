@@ -40,11 +40,18 @@ function parseStories(tweets) {
     var story = {};
     story.text = tweet.text;
     story.user = tweet.user.screen_name;
+    console.log(tweet);
     if(tweet.entities.media && tweet.entities.media.length > 0){
       story.image = tweet.entities.media[0].media_url;
     }
-    if(tweet.entities.url && tweet.entities.url.length > 0){
+    if(tweet.entities.urls && tweet.entities.urls.length > 0){
+      console.log(tweet.entities.urls);
       story.url = tweet.entities.urls[0].expanded_url;
+      $.get("/readability?url="+story.url).done(function(data) {
+        
+      }).fail(function(){
+
+      });
     };
     story.created_at = moment(tweet.created_at);
 

@@ -31,9 +31,6 @@
         this.$nextTick(function () {
             this.isImage = !this.story.text && this.story.image;
             this.isText = !this.story.image; 
-
-            console.log(this.isImage);
-            console.log(this.isText);
         });
     }
   }

@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var Twitter = require("node-twitter-api");
+var read = require('node-readability');
 
 var twitter = new Twitter({
     consumerKey: 'CydX9EBF2uwLcxjFHA2BEQ0CD',
@@ -72,6 +73,27 @@ app.get("/tweets", function(req, res){
         } else {
             res.send(data);
         }
+    });
+});
+
+app.get("/readability", function(req, res){
+    console.log(req.url);
+    var url = req.query.url;
+    read(url, function(err, article, meta) {
+        if(!article){
+            res.send();
+            return;
+        }
+        // Main Article
+        console.log(article.content);
+        // Title
+        console.log(article.title);
+
+        // HTML Source Code
+        console.log(article.html);
+
+        // Close article to clean up jsdom and prevent leaks
+        article.close();
     });
 });
 
