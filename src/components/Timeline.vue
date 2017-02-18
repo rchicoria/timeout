@@ -9,7 +9,7 @@
 
     <div class="timeline-container__content">
       <div class="news-container">
-        <!-- <story v-for="story in stories" v-bind:story="story"></story> -->
+        <story v-for="story in stories" v-bind:story="story"></story>
 
         <div class="news-container__entrie">
           <div class="news-container__col">

@@ -9,6 +9,7 @@ import Login from './components/Login.vue'
 import LoginSuccess from './components/LoginSuccess.vue'
 import Timeline from './components/Timeline.vue'
 import Story from './components/Story.vue'
+import StoryDetail from './components/StoryDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,7 @@ const router = new VueRouter({
     { path: '/', name: 'login', component: Login },
     { path: '/loginsuccess', name: 'loginsuccess', component: LoginSuccess },
     { path: '/timeline', name: 'timeline', component: Timeline },
+    { path: '/storydetail', name: 'storydetail', component: StoryDetail },
   ]
 })
 
@@ -35,7 +37,7 @@ var app = new Vue({ // eslint-disable-line no-new
     'story': Story
   },
   method: {
-    
+
   },
   data: {
     user: (() => {if(localStorage.getItem("user")) {return JSON.parse(localStorage.getItem("user"))} else { return undefined }})(),
