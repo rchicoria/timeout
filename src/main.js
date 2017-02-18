@@ -32,12 +32,22 @@ var app = new Vue({ // eslint-disable-line no-new
     
   },
   data: {
-    user: {}
+    user: (() => {if(localStorage.getItem("user")) {return JSON.parse(localStorage.getItem("user"))} else { return undefined }})(),
+    accessToken: localStorage.getItem("access_token"),
+    accessSecret: localStorage.getItem("access_secret")
   }
 })
 
-app.$on('set-user', (user) => {
-  app.user = user
+app.$on('set-user', (user, accessToken, accessSecret) => {
+  app.user = user;
+  app.accessToken = accessToken;
+  app.accessSecret = accessSecret;
+
+  console.log(user, accessToken, accessSecret)
+
+  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("access_token", accessToken);
+  localStorage.setItem("access_secret", accessSecret);
 });
 
 export { app, router }

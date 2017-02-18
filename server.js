@@ -20,6 +20,8 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+
+
 app.use('/static_workspace', express.static('static_workspace'));
 app.use('/dist', express.static('dist'))
 
@@ -47,7 +49,12 @@ app.get("/access-token", function(req, res) {
                     console.log(err);
                     res.status(500).send(err);
                 } else {
-                    res.send(user);
+                    var data = {
+                        user: user,
+                        access_token: accessToken,
+                        access_secret: accessSecret
+                    }
+                    res.send(data);
                 }
             });
         }
@@ -59,13 +66,17 @@ app.get("/tweets", function(req, res){
     var accessToken = req.query.access_token,
         accessSecret = req.query.access_secret;
 
-    twitter.search({'q':'trump','count': 10}, accessToken, accessSecret, (error, data) => {
-        var content = {
-            user: user,
-            tweets: data
+    twitter.getTimeline('home', {count: 250}, accessToken, accessSecret, (error, data) => {
+        if(error){
+            res.status(400).send(error);
+        } else {
+            res.send(data);
         }
-        res.send(content);
     });
+});
+
+app.get('*',function (req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.listen(3000);

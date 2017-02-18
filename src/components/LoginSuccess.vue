@@ -18,10 +18,10 @@
         </div>
 
         <ul class="time">
-          <li><a href="#/timeline" class="btn">2 min</a></li>
-          <li><a href="#/timeline" class="btn">5 min</a></li>
-          <li><a href="#/timeline" class="btn">10 min</a></li>
-          <li><a href="#/timeline" class="btn">15 min</a></li>
+          <li><a href="#" v-on:click="getTimeline(2)" class="btn">2 min</a></li>
+          <li><a href="#" v-on:click="getTimeline(5)" class="btn">5 min</a></li>
+          <li><a href="#" v-on:click="getTimeline(10)" class="btn">10 min</a></li>
+          <li><a href="#" v-on:click="getTimeline(15)" class="btn">15 min</a></li>
         </ul>
       </div>
     </div>
@@ -39,9 +39,28 @@ export default {
     }
   },
   mounted: function() {
-    this.name = this.$root.$data.user.name;
-    this.screen_name = this.$root.$data.user.screen_name;
-    this.image = this.$root.$data.user.profile_image_url;
+    this.$nextTick(function () {
+      if(!this.$root.$data.user){
+        localStorage.clear();
+        window.location = "/"
+      } else {
+        this.name = this.$root.$data.user.name;
+        this.screen_name = this.$root.$data.user.screen_name;
+        this.image = this.$root.$data.user.profile_image_url;
+      }
+    });
+  },
+  methods: {
+    getTimeline: (minutes) => {
+      var accessToken = app.$data.accessToken;
+      var accessSecret = app.$data.accessSecret;
+      $.get("/tweets?access_token="+accessToken+"&access_secret="+accessSecret).done(function(data) {
+        console.log(_.sortBy(data, 'retweet_count').reverse());
+      }).fail(function(){
+        localStorage.clear();
+        window.location = "/";
+      });
+    }
   }
 }
 </script>
