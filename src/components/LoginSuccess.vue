@@ -24,6 +24,10 @@
           <li><a href="#/timeline" class="btn">15 min</a></li>
         </ul>
       </div>
+
+      <div class="logout">
+        <a href=".">Logout</a>
+      </div>
     </div>
 </template>
 

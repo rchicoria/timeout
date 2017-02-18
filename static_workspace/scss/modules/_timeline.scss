@@ -5,7 +5,6 @@
   @include padding(50px null 50px null);
   display: flex;
   flex-direction: row;
-  // border: 1px solid red;
 
   &__sidebar {
     position: fixed;
@@ -14,10 +13,8 @@
     border-color: $green;
     width: 25%;
     @include padding(null 10px 50px null);
-    // padding-right: 10px;
     font-size: em(12px);
     text-align: right;
-    // border: 1px solid blue;
 
     ul {
       li {
@@ -28,6 +25,10 @@
 
         &:last-child a {
           color: lighten($grey, 70%);
+
+          &:hover {
+            color: $green;
+          }
         }
       }
     }
