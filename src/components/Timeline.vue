@@ -2,13 +2,15 @@
   <div class="timeline-container">
     <div class="timeline-container__sidebar">
       <ul>
-        <li><a href="#/loginsuccess/">Back</a></li>
-        <li><a href=".">Logout</a></li>
+        <li><a href="/loginsuccess">Back</a></li>
+        <li><a href="#" v-on:click="logout">Logout</a></li>
       </ul>
     </div>
 
     <div class="timeline-container__content">
       <div class="news-container">
+        <story v-for="story in stories" v-bind:story="story"></story>
+
         <div class="news-container__entrie">
           <div class="news-container__col">
             <div class="news-container__col-img">
@@ -76,7 +78,29 @@
 </template>
 
 <script>
+  import { app, router } from '../main.js';
+
   export default {
-    name: 'timeline'
+    name: 'timeline',
+    data: function () {
+      return {
+        stories: []
+      }
+    },
+    methods: {
+      logout: () => {
+        localStorage.clear();
+        window.location = "/";
+      }
+    },
+    mounted: function() {
+      this.$nextTick(function () {
+        if(this.$root.$data.stories.length){
+          this.stories = this.$root.$data.stories;
+        } else {
+          router.push({ name: 'login' })
+        }
+      });
+    }
   }
 </script>

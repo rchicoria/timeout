@@ -26,13 +26,34 @@
       </div>
 
       <div class="logout">
-        <a href=".">Logout</a>
+        <a href="#" v-on:click="logout">Logout</a>
       </div>
     </div>
 </template>
 
 <script>
 import { app, router } from '../main.js'
+
+function parseStories(tweets) {
+  tweets = _.sortBy(tweets, 'retweet_count').reverse()
+  var stories = tweets.map((tweet) => {
+    var story = {};
+    story.text = tweet.text;
+    story.user = tweet.user.screen_name;
+    if(tweet.entities.media && tweet.entities.media.length > 0){
+      story.image = tweet.entities.media[0].media_url;
+    }
+    if(tweet.entities.url && tweet.entities.url.length > 0){
+      story.url = tweet.entities.urls[0].expanded_url;
+    };
+    story.created_at = moment(tweet.created_at);
+
+    return story;
+  })
+
+  return stories;
+}
+
 export default {
   name: 'loginsuccess',
   data: function () {
@@ -59,11 +80,17 @@ export default {
       var accessToken = app.$data.accessToken;
       var accessSecret = app.$data.accessSecret;
       $.get("/tweets?access_token="+accessToken+"&access_secret="+accessSecret).done(function(data) {
-        console.log(_.sortBy(data, 'retweet_count').reverse());
+        var stories = parseStories(data);
+        app.$emit('set-stories', stories);
+        router.push({ name: 'timeline' })
       }).fail(function(){
         localStorage.clear();
         window.location = "/";
       });
+    },
+    logout: () => {
+      localStorage.clear();
+      window.location = "/";
     }
   }
 }

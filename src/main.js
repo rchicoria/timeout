@@ -8,8 +8,11 @@ import App from './App.vue'
 import Login from './components/Login.vue'
 import LoginSuccess from './components/LoginSuccess.vue'
 import Timeline from './components/Timeline.vue'
+import Story from './components/Story.vue'
 
 Vue.use(VueRouter)
+
+Vue.component('story', Story)
 
 window.cb = new Codebird;
 window.cb.setConsumerKey("CydX9EBF2uwLcxjFHA2BEQ0CD", "Z3NsDWLMkbnMHfEt85bkbthcUGyWG7dx9a3rQvFafsyKkip2Ev");
@@ -18,9 +21,9 @@ window.cb.setConsumerKey("CydX9EBF2uwLcxjFHA2BEQ0CD", "Z3NsDWLMkbnMHfEt85bkbthcU
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    { path: '/', component: Login },
+    { path: '/', name: 'login', component: Login },
     { path: '/loginsuccess', name: 'loginsuccess', component: LoginSuccess },
-    { path: '/timeline', component: Timeline },
+    { path: '/timeline', name: 'timeline', component: Timeline },
   ]
 })
 
@@ -28,13 +31,17 @@ var app = new Vue({ // eslint-disable-line no-new
   router,
   el: '#app',
   render: (h) => h(App),
+  components: {
+    'story': Story
+  },
   method: {
     
   },
   data: {
     user: (() => {if(localStorage.getItem("user")) {return JSON.parse(localStorage.getItem("user"))} else { return undefined }})(),
     accessToken: localStorage.getItem("access_token"),
-    accessSecret: localStorage.getItem("access_secret")
+    accessSecret: localStorage.getItem("access_secret"),
+    stories: []
   }
 })
 
@@ -48,6 +55,11 @@ app.$on('set-user', (user, accessToken, accessSecret) => {
   localStorage.setItem("user", JSON.stringify(user));
   localStorage.setItem("access_token", accessToken);
   localStorage.setItem("access_secret", accessSecret);
+});
+
+app.$on('set-stories', (stories) => {
+  app.stories = stories;
+  console.log(stories);
 });
 
 export { app, router }
