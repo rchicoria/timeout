@@ -4,7 +4,8 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var Twitter = require("node-twitter-api");
-var read = require('node-readability');
+var read = require('node-read');
+var extractor = require('unfluff');
 
 var twitter = new Twitter({
     consumerKey: 'CydX9EBF2uwLcxjFHA2BEQ0CD',
@@ -77,23 +78,21 @@ app.get("/tweets", function(req, res){
 });
 
 app.get("/readability", function(req, res){
-    console.log(req.url);
     var url = req.query.url;
     read(url, function(err, article, meta) {
-        if(!article){
-            res.send();
-            return;
+        var data = extractor(article.html);
+        var response = "";
+        if(article && article.title){
+            response += "<h1>"+article.title+"</h1>";
         }
-        // Main Article
-        console.log(article.content);
-        // Title
-        console.log(article.title);
-
-        // HTML Source Code
-        console.log(article.html);
-
-        // Close article to clean up jsdom and prevent leaks
-        article.close();
+        if(data.image){
+            response += "<img src='"+data.image+"'/>"
+        }
+        if(article && article.content){
+            response = article.content;
+        }
+        
+        res.send(response)
     });
 });
 
