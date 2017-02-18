@@ -4,9 +4,10 @@
   @include margin(null auto null auto);
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 
   @include respond-to('screen-xs') {
-    @include padding(5% null 5% null);
+    padding-bottom: 5%;
   }
 
   @include respond-to('screen-sm') {
@@ -15,19 +16,25 @@
 
   &__sidebar {
     position: fixed;
-    border-right-width: 4px;
-    border-style: solid;
-    border-color: $green;
-    @include padding(null 10px 50px null);
     font-size: em(12px);
-    text-align: right;
 
     @include respond-to('screen-xs') {
-      display: none;
+      width: 100%;
+      height: 50px;
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+      border-bottom-color: $green;
+      background-color: $blue;
+      z-index: 1000;
     }
 
     @include respond-to('screen-sm') {
+      border-right-width: 4px;
+      border-style: solid;
+      border-color: $green;
       width: 15%;
+      @include padding(null 10px 50px null);
+      text-align: right;
     }
 
     @include respond-to('screen-md') {
@@ -35,7 +42,41 @@
     }
 
     ul {
+      @include respond-to('screen-xs') {
+        height: 100%;
+        @include padding(null 5% null 5%);
+      }
+
       li {
+        @include respond-to('screen-xs') {
+          display: inline-block;
+          height: 100%;
+          line-height: 50px;
+          vertical-align: middle;
+
+          &:last-child {
+            float: right;
+
+            a {
+              opacity: .3;
+
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+
+          a {
+            color: $green;
+            font-weight: $bold;
+            @include transition-duration(.1s);
+
+            &:hover {
+              color: darken($green, 10%);
+            }
+          }
+        }
+
         &:not(:last-child) {
           margin-bottom: 5px;
           font-weight: $bold;
@@ -54,7 +95,7 @@
 
   &__content {
     @include respond-to('screen-xs') {
-      margin-left: 5%;
+      @include margin(calc(50px + 5%) null null 5%);
       width: 90%;
     }
 
@@ -119,6 +160,10 @@
 
         &:hover {
           box-shadow: 5px 12px 20px rgba(36,37,38,0.13);
+
+          .news-container__col-options {
+            opacity: 1;
+          }
         }
 
         &-txt {
@@ -172,6 +217,9 @@
 
           &-txt {
             @include padding(30px 30px 30px 30px);
+            word-wrap: break-word;
+            overflow: overlay;
+
             .twitter-handle {
               font-size: 14px;
               font-weight: $bold;
@@ -181,6 +229,47 @@
             p {
               margin-top: 10px;
               line-height: 150%;
+            }
+          }
+
+          &-options {
+            @include respond-to('screen-xs') {
+              display: none;
+            }
+            
+            @include respond-to('screen-sm') {
+              position: absolute;
+              right: calc(15% - 130px);
+              width: 75px;
+              padding-top: 3px;
+              font-size: em(10px);
+              opacity: 0;
+              @include transition-duration(.1s);
+
+              ul {
+                padding-top: 5px;
+
+                li {
+                  color: lighten($grey, 70%);
+
+                  &:not(:last-child) {
+                    margin-bottom: 3px;
+                  }
+
+                  &:last-child {
+                    margin-top: 20px;
+
+                    img {
+                      width: 25px;
+                      height: auto;
+                    }
+                  }
+                }
+              }
+            }
+
+            @include respond-to('screen-md') {
+              right: calc(25% - 130px);
             }
           }
 

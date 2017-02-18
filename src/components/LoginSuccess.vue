@@ -51,7 +51,7 @@ function parseStories(tweets) {
     if(tweet.entities.urls && tweet.entities.urls.length > 0){
       story.url = tweet.entities.urls[0].expanded_url;
     };
-    story.created_at = moment(tweet.created_at);
+    story.createdAt = moment(tweet.created_at);
 
     return story;
   })
@@ -84,6 +84,7 @@ function filterTen(stories, subset, maxTime){
       var length = story.text.split(" ").length;
       if(results[story.id]){
         length = results[story.id].split(" ").length;
+        story.content = results[story.id];
       }
 
       var timeNext = time+length*60/200;
