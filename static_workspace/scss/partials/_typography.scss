@@ -62,3 +62,11 @@ a {
     color: $green;
   }
 }
+
+span {
+  &.twitter-handle {
+    font-size: 14px;
+    font-weight: $bold;
+    color: lighten($grey, 70%);
+  }
+}
