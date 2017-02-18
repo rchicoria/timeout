@@ -102,10 +102,23 @@
         }
 
         ul.time {
+          @include respond-to('screen-xs') {
+            width: 80%;
+            @include margin(null auto null auto);
+          }
+
           li {
             min-height: 42px;
             display: inline-table;
             @include margin(null 2px null 2px);
+
+            @include respond-to('screen-xs') {
+              @include margin(null 0 null 0);
+
+              &:first-child {
+                margin-left: 5px;
+              }
+            }
 
             &:not(:last-child) {
               margin-bottom: 10px;
