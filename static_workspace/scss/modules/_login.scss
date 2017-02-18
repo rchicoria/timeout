@@ -9,6 +9,7 @@
 
   .login-col {
     width: 50%;
+    height: 100%;
 
     @include respond-to('screen-xs') {
       width: 100%;
@@ -65,6 +66,7 @@
         p {
           @include margin(10px null 50px null);
           color: $blue;
+          font-weight: $black;
         }
 
         .user-avatar {
@@ -103,7 +105,7 @@
           li {
             min-height: 42px;
             display: inline-table;
-            @include margin(null 2px 50px 2px);
+            @include margin(null 2px null 2px);
 
             &:not(:last-child) {
               margin-bottom: 10px;
@@ -112,6 +114,20 @@
             a {
               width: 70px;
             }
+          }
+        }
+      }
+
+      .logout {
+        position: absolute;
+        bottom: 10px;
+        font-size: em(12px);
+
+        a {
+          color: lighten($grey, 70%);
+
+          &:hover {
+            color: $green;
           }
         }
       }

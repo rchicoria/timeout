@@ -19,10 +19,7 @@
           <div class="news-container__col">
             <div class="news-container__col-txt">
               <span class="twitter-handle">@CNN</span>
-              <!-- <p>A political action group making anti-Trump robocalls is closely tied to a pro-Trump PAC</p> -->
-              <p>
-                A political action group making anti-Trump robocalls is closely tied to a pro-Trump PAC A political action group making anti-Trump robocalls
-              </p>
+              <p>A political action group making anti-Trump robocalls is closely tied to a pro-Trump PAC</p>
             </div>
           </div>
         </div>
