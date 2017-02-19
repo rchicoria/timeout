@@ -25,6 +25,10 @@
               margin-bottom: 3px;
             }
 
+            &.disabled {
+              opacity: .3;
+            }
+
             img {
               width: 25px;
               height: auto;
