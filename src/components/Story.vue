@@ -39,16 +39,17 @@
     },
     methods: {
       goToStory: (index) => {
-        console.log(index);
-        router.push({ name: 'storydetail', params: {index: index} })
+        router.push({ name: 'storydetail', query: {index: index} })
       }
     },
     mounted: function(){
         this.$nextTick(function () {
+            console.log(this.story);
             this.isImage = !this.story.text && this.story.image;
             this.isText = !this.story.image;
-            this.date = this.story.createdAt.format("DD/MM/YYYY");
-            this.time = this.story.createdAt.format("HH:mm");
+            var createdAt = moment(this.story.createdAt);
+            this.date = createdAt.format("DD/MM/YYYY");
+            this.time = createdAt.format("HH:mm");
         });
     }
   }

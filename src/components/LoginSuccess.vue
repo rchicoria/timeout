@@ -51,7 +51,7 @@ function parseStories(tweets) {
     if(tweet.entities.urls && tweet.entities.urls.length > 0){
       story.url = tweet.entities.urls[0].expanded_url;
     };
-    story.createdAt = moment(tweet.created_at);
+    story.createdAt = tweet.created_at;
 
     return story;
   })
@@ -83,8 +83,12 @@ function filterTen(stories, subset, maxTime){
       var story = subset[i]; 
       var length = story.text.split(" ").length;
       if(results[story.id]){
-        length = results[story.id].split(" ").length;
-        story.content = results[story.id];
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = results[story.id];
+        if(tmp.textContent.replace(/ /g,'') || tmp.innerText.replace(/ /g,'')){
+          length = results[story.id].split(" ").length;
+          story.content = results[story.id];
+        };
       }
 
       var timeNext = time+length*60/200;

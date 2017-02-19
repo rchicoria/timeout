@@ -68,7 +68,7 @@ app.get("/tweets", function(req, res){
     var accessToken = req.query.access_token,
         accessSecret = req.query.access_secret;
 
-    twitter.getTimeline('home', {count: 250}, accessToken, accessSecret, (error, data) => {
+    twitter.getTimeline('home', {count: 50}, accessToken, accessSecret, (error, data) => {
         if(error){
             res.status(400).send(error);
         } else {
@@ -89,7 +89,7 @@ app.get("/readability", function(req, res){
             response += "<img src='"+data.image+"'/>"
         }
         if(article && article.content){
-            response = article.content;
+            response += article.content;
         }
         
         res.send(response)

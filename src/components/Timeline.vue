@@ -2,7 +2,7 @@
   <div class="timeline-container">
     <div class="timeline-container__sidebar">
       <ul>
-        <li><a href="/loginsuccess">Back</a></li>
+        <li><a href="/loginsuccess">2 min</a></li>
         <li><a href="#" v-on:click="logout">Logout</a></li>
       </ul>
     </div>

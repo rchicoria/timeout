@@ -25,7 +25,7 @@ const router = new VueRouter({
     { path: '/', name: 'login', component: Login },
     { path: '/loginsuccess', name: 'loginsuccess', component: LoginSuccess },
     { path: '/timeline', name: 'timeline', component: Timeline },
-    { path: '/storydetail/:index', name: 'storydetail', component: StoryDetail },
+    { path: '/storydetail', name: 'storydetail', component: StoryDetail },
   ]
 })
 
@@ -43,7 +43,7 @@ var app = new Vue({ // eslint-disable-line no-new
     user: (() => {if(localStorage.getItem("user")) {return JSON.parse(localStorage.getItem("user"))} else { return undefined }})(),
     accessToken: localStorage.getItem("access_token"),
     accessSecret: localStorage.getItem("access_secret"),
-    stories: []
+    stories: (() => {if(localStorage.getItem("stories")) {return JSON.parse(localStorage.getItem("stories"))} else { return [] }})()
   }
 })
 
@@ -59,6 +59,7 @@ app.$on('set-user', (user, accessToken, accessSecret) => {
 
 app.$on('set-stories', (stories) => {
   app.stories = stories;
+  localStorage.setItem("stories", JSON.stringify(stories));
 });
 
 export { app, router }
