@@ -87,6 +87,11 @@
         }
       }
 
+      a {
+        @extend p;
+        margin-bottom: 10px;
+      }
+
       blockquote {
         @include margin(10px 30px 20px 30px);
         border-left-width: 4px;
