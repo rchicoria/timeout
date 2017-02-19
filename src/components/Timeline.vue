@@ -2,7 +2,7 @@
   <div class="timeline-container">
     <div class="timeline-container__sidebar">
       <ul>
-        <li><a href="/loginsuccess">2 min</a></li>
+        <li><a href="/loginsuccess">{{ time }} min</a></li>
         <li><a href="#" v-on:click="logout">Logout</a></li>
       </ul>
     </div>
@@ -22,7 +22,8 @@
     name: 'timeline',
     data: function () {
       return {
-        stories: []
+        stories: [],
+        time: null
       }
     },
     methods: {
@@ -33,6 +34,7 @@
     },
     mounted: function() {
       this.$nextTick(function () {
+        this.time = localStorage.getItem("time");
         if(this.$root.$data.stories.length){
           this.stories = this.$root.$data.stories;
         } else {

@@ -2,7 +2,7 @@
   <div class="timeline-container timeline-container__detail">
     <div class="timeline-container__sidebar">
       <ul>
-        <li><a href="/loginsuccess">2 min</a></li>
+        <li><a href="/loginsuccess">{{ maxTime }} min</a></li>
         <li><a href="/timeline">Back</a></li>
         <li><a href="#" v-on:click="logout">Logout</a></li>
       </ul>
@@ -49,7 +49,8 @@
         date: null,
         time: null,
         hasPrev: null,
-        hasNext: null
+        hasNext: null,
+        maxTime: null
       }
     },
     methods: {
@@ -75,8 +76,6 @@
     watch: {
       index: {
         handler (val, oldVal) {
-          console.log(val);
-          console.log(this.$root.$data.stories);
           var story = this.$root.$data.stories[val];
           if(story.content){
             this.hasContent = true;
@@ -99,6 +98,7 @@
     mounted: function(){
         this.$nextTick(function () {
             this.index = parseInt(getUrlVars().index);
+            this.maxTime = localStorage.getItem("time");
         });
     }
   }

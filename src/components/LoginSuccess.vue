@@ -103,22 +103,16 @@ function filterTen(stories, subset, maxTime){
         var tmp = document.createElement("DIV");
         tmp.innerHTML = results[story.id];
         if(tmp.textContent.replace(/ /g,'') || tmp.innerText.replace(/ /g,'')){
-          console.log(tmp.textContent);
           length = tmp.textContent.split(" ").length;
           story.content = results[story.id];
         };
       }
 
-      console.log(length);
-
       var timeNext = time+length*60/200;
       if(timeNext <= maxTime){
-        console.log(story);
         timeline.push(story);
         time = timeNext;
       }
-
-      console.log(maxTime-time);
 
       if(maxTime-time < 15){
         app.$emit('set-stories', timeline);
@@ -161,6 +155,7 @@ export default {
     getTimeline: (minutes) => {
       var accessToken = app.$data.accessToken;
       var accessSecret = app.$data.accessSecret;
+      localStorage.setItem("time", minutes);
       $.get("/tweets?access_token="+accessToken+"&access_secret="+accessSecret).done(function(data) {
         var stories = parseStories(data);
         filterStories(stories, minutes*60);
