@@ -50,6 +50,8 @@ function parseStories(tweets) {
     }
     if(tweet.entities.urls && tweet.entities.urls.length > 0){
       story.url = tweet.entities.urls[0].expanded_url;
+
+      
     };
     story.createdAt = tweet.created_at;
 
@@ -64,21 +66,23 @@ var time=0;
 var timeline = [];
 
 function filterTen(stories, subset, maxTime){
+  if(subset.length == 0){
+    console.log("HERE")
+    app.$emit('set-stories', timeline);
+    router.push({ name: 'timeline' });
+    return;
+  }
   pointer += 10;
   var requests = _.reduce(subset, (col, story)=>{
     if(story.url){
-      col[story.id] = function(callback){
-        $.get("/readability?url="+story.url).done(function(data){
-          callback(null, data);
-        });
-      }
+      col[""+story.id] = story.url;
       return col;
     } else {
       return col;
     }
   }, {})
 
-  async.parallel(requests, (err, results)=>{
+  $.post("/readabilitybulk", requests, function(results){
     for(var i=0; i<subset.length; i++){
       var story = subset[i]; 
       var length = story.text.split(" ").length;
@@ -86,16 +90,22 @@ function filterTen(stories, subset, maxTime){
         var tmp = document.createElement("DIV");
         tmp.innerHTML = results[story.id];
         if(tmp.textContent.replace(/ /g,'') || tmp.innerText.replace(/ /g,'')){
-          length = results[story.id].split(" ").length;
+          console.log(tmp.textContent);
+          length = tmp.textContent.split(" ").length;
           story.content = results[story.id];
         };
       }
 
+      console.log(length);
+
       var timeNext = time+length*60/200;
       if(timeNext <= maxTime){
+        console.log(story);
         timeline.push(story);
         time = timeNext;
       }
+
+      console.log(maxTime-time);
 
       if(maxTime-time < 15){
         app.$emit('set-stories', timeline);
@@ -105,7 +115,7 @@ function filterTen(stories, subset, maxTime){
     }
     var nextStories = stories.slice(pointer, pointer+10);
     filterTen(stories, nextStories, maxTime);
-  });
+  }, 'json');
 }
 
 function filterStories(stories, maxTime) {
