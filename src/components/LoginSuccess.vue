@@ -136,7 +136,8 @@ export default {
     return {
       name: null,
       screen_name: null,
-      image: null
+      image: null,
+      loading: false
     }
   },
   mounted: function() {
@@ -156,6 +157,8 @@ export default {
       var accessToken = app.$data.accessToken;
       var accessSecret = app.$data.accessSecret;
       localStorage.setItem("time", minutes);
+      $("ul.time").hide();
+      $(".loading").show();
       $.get("/tweets?access_token="+accessToken+"&access_secret="+accessSecret).done(function(data) {
         var stories = parseStories(data);
         filterStories(stories, minutes*60);
