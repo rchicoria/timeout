@@ -111,8 +111,14 @@
     }
 
     &.moving {
-      position: absolute;
-      width: 90%;
+      @include respond-to('screen-xs') {
+        position: absolute;
+        width: 90%;
+      }
+
+      @include respond-to('screen-sm') {
+        margin-left: 0 !important;
+      }
     }
   }
 }
