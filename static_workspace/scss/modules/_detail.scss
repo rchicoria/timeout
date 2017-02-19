@@ -80,6 +80,7 @@
 
       p {
         @include padding(null 30px null 30px);
+        color: $grey !important;
         line-height: 24px;
 
         &:not(:last-child) {
@@ -87,9 +88,20 @@
         }
       }
 
+      font {
+        color: $grey !important;
+        text-align: left !important;
+      }
+
+      center {
+        text-align: left !important;
+      }
+
       a {
-        @extend p;
         margin-bottom: 10px;
+        @include padding(null 30px null 30px);
+        line-height: 24px;
+        text-align: left !important;
       }
 
       blockquote {
