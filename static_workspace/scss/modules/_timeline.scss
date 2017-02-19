@@ -45,6 +45,7 @@
       @include respond-to('screen-xs') {
         height: 100%;
         @include padding(null 5% null 5%);
+        display: flex;
       }
 
       li {
@@ -54,8 +55,20 @@
           line-height: 50px;
           vertical-align: middle;
 
+          &:first-child {
+            width: 55px;
+            order: 2;
+          }
+
+          &:nth-child(2) {
+            width: 55px;
+            order: 1;
+          }
+
           &:last-child {
-            float: right;
+            width: calc(100% - 110px);
+            text-align: right;
+            order: 3;
 
             a {
               opacity: .3;
