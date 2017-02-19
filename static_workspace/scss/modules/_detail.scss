@@ -32,7 +32,7 @@
             }
 
             &:nth-child(3) {
-              margin-top: 20px;
+              margin-top: 15px;
             }
           }
         }
@@ -45,6 +45,8 @@
   }
 
   .news-container__entrie {
+    min-height: inherit;
+
     &-detail {
       padding-bottom: 30px;
       cursor: auto;
@@ -106,6 +108,10 @@
         .twitter-handle {
           @include margin(30px null 10px null);
           padding-left: 30px;
+        }
+
+        span {
+          width: 100%;
         }
       }
     }
