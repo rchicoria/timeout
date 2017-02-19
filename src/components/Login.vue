@@ -27,7 +27,6 @@ export default {
   },
   mounted: function() {
       this.$nextTick(function () {
-        console.log(this.$root.$data.accessToken);
         if(this.$root.$data.user && this.$root.$data.accessToken != 'null' && this.$root.$data.accessSecret != 'null'){
           router.push({ name: 'loginsuccess' });
         } else if(this.$root.$data.user){
@@ -40,7 +39,6 @@ export default {
 
           if(this.oauthToken && this.oauthVerifier){
             $.get("/access-token?oauth_token="+this.oauthToken+"&oauth_verifier="+this.oauthVerifier).done(function(data) {
-              console.log(data);
               app.$emit('set-user', data.user, data.access_token, data.access_secret);
               router.push({ name: 'loginsuccess' })
             });

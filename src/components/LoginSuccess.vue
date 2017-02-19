@@ -42,20 +42,89 @@ function parseStories(tweets) {
   tweets = _.sortBy(tweets, 'retweet_count').reverse()
   var stories = tweets.map((tweet) => {
     var story = {};
-    story.text = tweet.text;
+    story.id = tweet.id;
+    var textArray = tweet.text.split(" ");
+    var filteredTextArray = _.filter(textArray, (val)=>{
+      return val.indexOf("http://") == -1 && val.indexOf("https://") == -1;
+    });
+    story.text = filteredTextArray.join(" ");
     story.user = tweet.user.screen_name;
     if(tweet.entities.media && tweet.entities.media.length > 0){
       story.image = tweet.entities.media[0].media_url;
     }
-    if(tweet.entities.url && tweet.entities.url.length > 0){
+    if(tweet.entities.urls && tweet.entities.urls.length > 0){
       story.url = tweet.entities.urls[0].expanded_url;
+
+      
     };
-    story.created_at = moment(tweet.created_at);
+    story.createdAt = tweet.created_at;
 
     return story;
   })
 
   return stories;
+}
+
+var pointer=0;
+var time=0;
+var timeline = [];
+
+function filterTen(stories, subset, maxTime){
+  if(subset.length == 0){
+    console.log("HERE")
+    app.$emit('set-stories', timeline);
+    router.push({ name: 'timeline' });
+    return;
+  }
+  pointer += 10;
+  var requests = _.reduce(subset, (col, story)=>{
+    if(story.url){
+      col[""+story.id] = story.url;
+      return col;
+    } else {
+      return col;
+    }
+  }, {})
+
+  $.post("/readabilitybulk", requests, function(results){
+    for(var i=0; i<subset.length; i++){
+      var story = subset[i]; 
+      var length = story.text.split(" ").length;
+      if(results[story.id]){
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = results[story.id];
+        if(tmp.textContent.replace(/ /g,'') || tmp.innerText.replace(/ /g,'')){
+          console.log(tmp.textContent);
+          length = tmp.textContent.split(" ").length;
+          story.content = results[story.id];
+        };
+      }
+
+      console.log(length);
+
+      var timeNext = time+length*60/200;
+      if(timeNext <= maxTime){
+        console.log(story);
+        timeline.push(story);
+        time = timeNext;
+      }
+
+      console.log(maxTime-time);
+
+      if(maxTime-time < 15){
+        app.$emit('set-stories', timeline);
+        router.push({ name: 'timeline' })
+        return;
+      }
+    }
+    var nextStories = stories.slice(pointer, pointer+10);
+    filterTen(stories, nextStories, maxTime);
+  }, 'json');
+}
+
+function filterStories(stories, maxTime) {
+  var nextStories = stories.slice(pointer, pointer+10);
+  filterTen(stories, nextStories, maxTime);
 }
 
 export default {
@@ -85,8 +154,7 @@ export default {
       var accessSecret = app.$data.accessSecret;
       $.get("/tweets?access_token="+accessToken+"&access_secret="+accessSecret).done(function(data) {
         var stories = parseStories(data);
-        app.$emit('set-stories', stories);
-        router.push({ name: 'timeline' })
+        filterStories(stories, minutes*60);
       }).fail(function(){
         localStorage.clear();
         window.location = "/";
