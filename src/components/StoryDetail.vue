@@ -94,7 +94,7 @@
           this.hasPrev = this.index > 0;
         },
         deep: true
-      }  
+      }
     },
     mounted: function(){
         this.$nextTick(function () {

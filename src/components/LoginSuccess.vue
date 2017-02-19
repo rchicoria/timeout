@@ -52,11 +52,20 @@ function parseStories(tweets) {
     if(tweet.entities.media && tweet.entities.media.length > 0){
       story.image = tweet.entities.media[0].media_url;
     }
-    if(tweet.entities.urls && tweet.entities.urls.length > 0){
-      story.url = tweet.entities.urls[0].expanded_url;
 
-      
-    };
+    if(tweet.entities.urls && tweet.entities.urls.length > 0){
+     for(var i=0; i<tweet.entities.urls.length; i++){
+       console.log(tweet.entities.urls[i].expanded_url);
+       if(tweet.entities.urls[i].expanded_url.indexOf("twitter") == -1){
+         console.log(tweet.entities.urls[i].expanded_url);
+         story.url = tweet.entities.urls[i].expanded_url;
+         break;
+       }
+     }
+
+     console.log(tweet.entities.urls);
+
+   };
     story.createdAt = tweet.created_at;
 
     return story;
@@ -88,7 +97,7 @@ function filterTen(stories, subset, maxTime){
 
   $.post("/readabilitybulk", requests, function(results){
     for(var i=0; i<subset.length; i++){
-      var story = subset[i]; 
+      var story = subset[i];
       var length = story.text.split(" ").length;
       if(results[story.id]){
         var tmp = document.createElement("DIV");
