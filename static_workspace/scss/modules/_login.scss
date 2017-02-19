@@ -107,6 +107,10 @@
             @include margin(null auto null auto);
           }
 
+          &.hide {
+            display: none;
+          }
+
           li {
             min-height: 42px;
             display: inline-table;
@@ -127,6 +131,15 @@
             a {
               width: 70px;
             }
+          }
+        }
+
+        .loading {
+          display: none;
+
+          img {
+            margin-left: -50px;
+            width: 300px;
           }
         }
       }

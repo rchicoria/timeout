@@ -23,6 +23,10 @@
           <li><a href="#" v-on:click="getTimeline(10)" class="btn">10 min</a></li>
           <li><a href="#" v-on:click="getTimeline(15)" class="btn">15 min</a></li>
         </ul>
+
+        <div class="loading">
+          <img src="static_workspace/img/loading.gif" alt="Loading..." />
+        </div>
       </div>
 
       <div class="logout">
