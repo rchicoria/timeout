@@ -55,47 +55,55 @@
         box-shadow: 0 6px 15px rgba(36,37,38,0.08);
       }
 
-      h1 {
-        @include margin(20px null 20px null);
-        @include padding(null 30px null 30px);
-        font-size: em(20px);
-        font-weight: $black;
-        line-height: 30px;
-      }
-
-      h2 {
-        @include margin(20px null 20px null);
-        @include padding(null 30px null 30px);
-        font-size: em(16px);
-        font-weight: $black;
-        line-height: 28px;
-      }
-
-      img {
-        margin-bottom: 30px;
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-      }
-
-      p {
-        @include padding(null 30px null 30px);
-        line-height: 24px;
-
-        &:not(:last-child) {
-          margin-bottom: 10px;
+      > div {
+        h1 {
+          @include margin(20px null 20px null);
+          @include padding(null 30px null 30px);
+          font-size: em(20px);
+          font-weight: $black;
+          line-height: 30px;
         }
-      }
 
-      blockquote {
-        @include margin(10px 30px 20px 30px);
-        border-left-width: 4px;
-        border-left-style: solid;
-        border-left-color: lighten($grey, 70%);
-        font-style: italic;
+        h2, h3, h4, h5 {
+          @include margin(20px null 20px null);
+          @include padding(null 30px null 30px);
+          font-size: em(16px);
+          font-weight: $black;
+          line-height: 28px;
+        }
 
-        > p {
-          padding-left: 20px;
+        img {
+          margin-bottom: 30px;
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+
+        p {
+          @include padding(null 30px null 30px);
+          line-height: 24px;
+
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+        }
+
+        blockquote {
+          @include margin(10px 30px 20px 30px);
+          border-left-width: 4px;
+          border-left-style: solid;
+          border-left-color: lighten($grey, 70%);
+          font-style: italic;
+
+          > p {
+            padding-left: 20px;
+          }
+        }
+
+        > div {
+          img {
+            display: none;
+          }
         }
       }
 
