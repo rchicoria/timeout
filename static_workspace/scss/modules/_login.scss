@@ -149,6 +149,11 @@
         bottom: 10px;
         font-size: em(12px);
 
+        @include respond-to('screen-xs') {
+          width: 100%;
+          text-align: center;
+        }
+
         a {
           color: lighten($grey, 70%);
 

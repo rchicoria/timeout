@@ -56,18 +56,17 @@
           vertical-align: middle;
 
           &:first-child {
-            width: 55px;
             order: 2;
           }
 
           &:nth-child(2) {
-            width: 55px;
             order: 1;
+            margin-right: 20px;
           }
 
           &:last-child {
-            width: calc(100% - 110px);
-            text-align: right;
+            position: absolute;
+            right: 5%;
             order: 3;
 
             a {
