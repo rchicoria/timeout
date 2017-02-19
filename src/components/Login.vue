@@ -8,7 +8,7 @@
       <div class="login-col__form-content">
         <img src="static_workspace/img/timeout-logo.svg" alt="Timeout" />
         <p>A time saver for your Twitter feed</p>
-        <a v-if="oauthToken" class="btn">Logado</a>
+        <a v-if="oauthToken" class="btn">Loading...</a>
         <a href="/request-token" v-else class="btn">Log in with Twitter</a>
       </div>
     </div>
