@@ -1,6 +1,6 @@
-# timeout
+# Timeout
 
-> A Vue.js project
+> A Twitter time-saver app that filters and sorts the user timeline in order to fit the content to a limited time-span (2, 5 10 or 15 minutes).
 
 ## Build Setup
 
