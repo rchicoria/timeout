@@ -1,5 +1,7 @@
 # Timeout
 
+### Warning: Hackathon code
+
 > A Twitter time-saver app that filters and sorts the user timeline in order to fit the content to a limited time-span (2, 5 10 or 15 minutes) based not only on the tweet but also on linked content (news, articles ...).
 
 ![alt tag](https://raw.githubusercontent.com/rchicoria/timeout/master/docs/img/Timeout_01.png)
