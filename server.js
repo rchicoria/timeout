@@ -11,9 +11,9 @@ var async = require('async');
 var bodyParser = require('body-parser');
 
 var twitter = new Twitter({
-    consumerKey: 'CydX9EBF2uwLcxjFHA2BEQ0CD',
-    consumerSecret: 'Z3NsDWLMkbnMHfEt85bkbthcUGyWG7dx9a3rQvFafsyKkip2Ev',
-    callback: 'http://localhost:3000/'
+    consumerKey: process.env.CONSUMER_KEY,
+    consumerSecret: process.env.CONSUMER_SECRET,
+    callback: process.env.CALLBACK
 });
 
 var _requestSecret;
@@ -26,8 +26,8 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.use('/static_workspace', express.static('static_workspace'));
-app.use('/dist', express.static('dist'))
+app.use('/static_workspace', express.static(path.join(__dirname + '/static_workspace')));
+app.use('/static_workspace/dist', express.static(path.join(__dirname + '/dist')));
 
 app.get("/request-token", function(req, res) {
     twitter.getRequestToken(function(err, requestToken, requestSecret) {
@@ -152,4 +152,6 @@ app.get('*',function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-app.listen(3000);
+app.set('port', (process.env.PORT || 3000));
+
+app.listen(app.get('port'));
