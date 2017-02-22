@@ -148,7 +148,8 @@ export default {
       } else {
         this.name = this.$root.$data.user.name;
         this.screen_name = this.$root.$data.user.screen_name;
-        this.image = this.$root.$data.user.profile_image_url;
+        console.log(this.$root.$data.user.profile_image_url);
+        this.image = this.$root.$data.user.profile_image_url.replace("normal","bigger");
       }
     });
   },
